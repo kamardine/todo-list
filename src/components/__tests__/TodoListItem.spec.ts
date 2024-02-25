@@ -7,12 +7,12 @@ describe("TodoListItem", () => {
   it("renders properly", () => {
     const itemTest = {
       id: 120393,
-      libelle: 'Test',
+      libelle: "Test",
       checked: false,
-      edited: false
+      edited: false,
     };
     const wrapper = mount(TodoListItem, { props: { item: itemTest } });
-    
+
     expect(wrapper.text()).toContain(itemTest);
   });
 });
