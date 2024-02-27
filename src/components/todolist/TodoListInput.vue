@@ -11,37 +11,14 @@
       @click="handleCancel"
       class="hover:bg-red-500 group flex items-center rounded-md bg-red-600 text-white text-sm font-medium px-2 mr-1 shadow-sm"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-6 h-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-        />
-      </svg>
+      <IconCancel />
     </button>
 
     <button
       type="submit"
       class="hover:bg-orange-500 group flex items-center rounded-md bg-orange-600 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm"
     >
-      <svg
-        v-if="!editableItem.edited"
-        width="20"
-        height="20"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path
-          d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1Z"
-        />
-      </svg>
+      <IconAdd v-if="!editableItem.edited" />
       {{ btnLabel }}
     </button>
   </form>
@@ -50,6 +27,8 @@
 <script setup lang="ts">
 import { ref, defineEmits, defineProps, watch, computed } from "vue";
 import type { NewItemTodo } from "@/types/todoItem";
+import IconCancel from "../icons/IconCancel.vue";
+import IconAdd from "../icons/IconAdd.vue";
 
 const emit = defineEmits<{
   (e: "addNewItem", item: NewItemTodo): void;
