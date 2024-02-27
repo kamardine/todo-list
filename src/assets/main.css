@@ -25,7 +25,6 @@ a,
   body {
     display: flex;
     place-items: flex-start;
-    padding-top: 25px;
   }
 }
 

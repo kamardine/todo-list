@@ -1,3 +1,38 @@
+<template>
+  <div
+    class="bg-white w-full m-5 rounded-md space-y-4 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6"
+  >
+    <div class="flex justify-center items-center">
+      <h2 class="font-semibold text-slate-900 text-xl uppercase">Todo list</h2>
+      <p
+        v-if="todoListCompleted"
+        class="font-semibold text-green-500 lowercase ml-1"
+      >
+        completed !
+      </p>
+    </div>
+
+    <TodoListInput
+      @add-new-item="handleAddNewItem"
+      @update-item="handleUpdateItem"
+      :editable-item="editableItem"
+    />
+
+    <div v-if="itemsList.length > 0">
+      <ul class="divide-y divide-gray-200">
+        <TodoListItem
+          v-for="item in itemsList"
+          :item="item"
+          :key="item.id"
+          @delete-item="handleDeletItem"
+          @handle-checked="handleChecked"
+          @edit-item="handleEditItem"
+        />
+      </ul>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
 import TodoListInput from "./todolist/TodoListInput.vue";
@@ -72,38 +107,3 @@ const initEditedItem = () => {
   }
 };
 </script>
-
-<template>
-  <div
-    class="bg-white w-6/12 rounded-md space-y-4 p-4 sm:px-8 sm:py-6 lg:p-4 xl:px-8 xl:py-6"
-  >
-    <div class="flex justify-center items-center">
-      <h2 class="font-semibold text-slate-900 text-xl uppercase">Todo list</h2>
-      <p
-        v-if="todoListCompleted"
-        class="font-semibold text-green-500 lowercase ml-1"
-      >
-        completed !
-      </p>
-    </div>
-
-    <TodoListInput
-      @add-new-item="handleAddNewItem"
-      @update-item="handleUpdateItem"
-      :editable-item="editableItem"
-    />
-
-    <div v-if="itemsList.length > 0">
-      <ul class="divide-y divide-gray-200">
-        <TodoListItem
-          v-for="item in itemsList"
-          :item="item"
-          :key="item.id"
-          @delete-item="handleDeletItem"
-          @handle-checked="handleChecked"
-          @edit-item="handleEditItem"
-        />
-      </ul>
-    </div>
-  </div>
-</template>

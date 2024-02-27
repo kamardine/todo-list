@@ -1,32 +1,3 @@
-<script setup lang="ts">
-import { defineEmits, defineProps, ref } from "vue";
-import type { NewItemTodo } from "@/types/todoItem";
-
-const emit = defineEmits<{
-  (e: "deleteItem", item: NewItemTodo): void;
-  (e: "handleChecked", checkedItem: NewItemTodo): void;
-  (e: "editItem", item: NewItemTodo): void;
-}>();
-
-const props = defineProps(["item"]);
-
-const checkedItem = ref(false);
-
-const deleteItem = () => {
-  console.log("deleteItem before checkedItem : ", checkedItem.value);
-  emit("deleteItem", props.item);
-  console.log("deleteItem after checkedItem : ", checkedItem.value);
-};
-
-const handleChecked = () => {
-  emit("handleChecked", { ...props.item, checked: checkedItem });
-};
-
-const editItem = () => {
-  emit("editItem", { ...props.item, edited: true });
-};
-</script>
-
 <template>
   <li class="py-4 flex items-center justify-between">
     <div class="flex items-center">
@@ -117,3 +88,32 @@ const editItem = () => {
     </div>
   </li>
 </template>
+
+<script setup lang="ts">
+import { defineEmits, defineProps, ref } from "vue";
+import type { NewItemTodo } from "@/types/todoItem";
+
+const emit = defineEmits<{
+  (e: "deleteItem", item: NewItemTodo): void;
+  (e: "handleChecked", checkedItem: NewItemTodo): void;
+  (e: "editItem", item: NewItemTodo): void;
+}>();
+
+const props = defineProps(["item"]);
+
+const checkedItem = ref(false);
+
+const deleteItem = () => {
+  console.log("deleteItem before checkedItem : ", checkedItem.value);
+  emit("deleteItem", props.item);
+  console.log("deleteItem after checkedItem : ", checkedItem.value);
+};
+
+const handleChecked = () => {
+  emit("handleChecked", { ...props.item, checked: checkedItem });
+};
+
+const editItem = () => {
+  emit("editItem", { ...props.item, edited: true });
+};
+</script>
